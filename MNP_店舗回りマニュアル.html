@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>店舗回り 完全マニュアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0f2040;
+    --blue:       #1e5fbe;
+    --blue-lt:    #e8f0fc;
+    --blue-bdr:   #a8c4f0;
+    --green:      #0a6e50;
+    --green-lt:   #e6f5f0;
+    --green-bdr:  #7dcbb8;
+    --red:        #c0392b;
+    --red-lt:     #fef0ee;
+    --red-bdr:    #f5a09a;
+    --amber:      #8a5500;
+    --amber-lt:   #fff8e6;
+    --amber-bdr:  #f5c46b;
+    --orange:     #d4600a;
+    --orange-lt:  #fff3e8;
+    --orange-bdr: #f5aa70;
+    --purple:     #5a2d82;
+    --purple-lt:  #f5f0ff;
+    --purple-bdr: #c4a0f0;
+    --gray-lt:    #f5f5f0;
+    --text:       #1a1a1a;
+    --muted:      #666;
+    --bg:         #f4f4ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 36px 20px 64px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0f2040 0%, #1a5cbf 100%);
+    border-radius: 16px; padding: 36px 40px 30px; margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .hero::after { content:''; position:absolute; right:-50px; bottom:-50px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.05); }
+  .hero-label { display:inline-block; background:rgba(255,255,255,.18); color:#fff; font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px; letter-spacing:1px; border:1px solid rgba(255,255,255,.25); margin-bottom:12px; }
+  .hero-title { font-size:26px; font-weight:700; color:#fff; line-height:1.35; margin-bottom:6px; }
+  .hero-sub   { font-size:13px; color:rgba(255,255,255,.65); }
+
+  /* SECTION HEADER */
+  .sec-head { display:flex; align-items:center; gap:10px; margin: 32px 0 14px; }
+  .sec-icon { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .sec-icon.blue   { background:var(--blue); }
+  .sec-icon.green  { background:var(--green); }
+  .sec-icon.red    { background:var(--red); }
+  .sec-icon.amber  { background:var(--amber); }
+  .sec-icon.orange { background:var(--orange); }
+  .sec-icon.purple { background:var(--purple); }
+  .sec-title { font-size:17px; font-weight:700; color:var(--navy); }
+
+  /* CARD */
+  .card { background:#fff; border:1px solid #e0e0da; border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .card-head { padding:13px 20px; border-bottom:1px solid #f0f0ea; font-size:14px; font-weight:700; display:flex; align-items:center; gap:8px; }
+  .card-head.blue   { background:var(--blue-lt);   color:var(--navy); }
+  .card-head.green  { background:var(--green-lt);  color:var(--green); }
+  .card-head.red    { background:var(--red-lt);    color:var(--red); }
+  .card-head.amber  { background:var(--amber-lt);  color:var(--amber); }
+  .card-head.orange { background:var(--orange-lt); color:var(--orange); }
+  .card-head.purple { background:var(--purple-lt); color:var(--purple); }
+  .card-body { padding:16px 20px; font-size:13.5px; color:var(--muted); line-height:1.9; }
+  .card-body strong { color:var(--text); font-weight:700; }
+  .card-body .em    { color:var(--blue);   font-weight:700; }
+  .card-body .em-r  { color:var(--red);    font-weight:700; }
+  .card-body .em-g  { color:var(--green);  font-weight:700; }
+  .card-body .em-o  { color:var(--orange); font-weight:700; }
+
+  /* 3-COL GRID */
+  .three-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px; }
+  .grid-card { background:#fff; border:1.5px solid var(--amber-bdr); border-radius:12px; padding:16px 14px; text-align:center; }
+  .grid-card .gc-icon { font-size:26px; margin-bottom:8px; }
+  .grid-card .gc-title { font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px; }
+  .grid-card .gc-num { font-size:20px; font-weight:900; color:var(--red); margin-bottom:4px; }
+  .grid-card .gc-desc { font-size:11.5px; color:var(--muted); line-height:1.7; }
+
+  /* 4-COL PLAN GRID */
+  .four-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+  .plan-card { background:#fff; border:1.5px solid var(--blue-bdr); border-radius:12px; padding:14px 12px; }
+  .plan-card .pc-carrier { font-size:12px; font-weight:900; color:var(--blue); margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--blue-bdr); }
+  .plan-card .pc-body { font-size:11.5px; color:var(--muted); line-height:1.75; }
+  .plan-card .pc-body .hi { color:var(--red); font-weight:700; }
+  .plan-card .pc-body .hi-g { color:var(--green); font-weight:700; }
+
+  /* NOTE */
+  .note { border-left:3px solid; border-radius:0 8px 8px 0; padding:10px 14px; margin-top:10px; font-size:12.5px; line-height:1.8; }
+  .note.blue   { border-color:var(--blue);      background:var(--blue-lt);   color:#1a3a7a; }
+  .note.green  { border-color:var(--green);     background:var(--green-lt);  color:var(--green); }
+  .note.amber  { border-color:var(--amber-bdr); background:var(--amber-lt);  color:var(--amber); }
+  .note.red    { border-color:var(--red);       background:var(--red-lt);    color:#8b2020; }
+  .note.orange { border-color:var(--orange-bdr);background:var(--orange-lt); color:var(--orange); }
+  .note strong { font-weight:700; }
+
+  /* STEP LIST */
+  .step-list { display:flex; flex-direction:column; gap:10px; }
+  .step-row { display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid #e0e0da; border-radius:12px; padding:14px 18px; }
+  .step-num { width:32px; height:32px; border-radius:50%; font-size:13px; font-weight:900; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .step-num.blue   { background:var(--blue); }
+  .step-num.green  { background:var(--green); }
+  .step-num.red    { background:var(--red); }
+  .step-num.amber  { background:var(--amber); }
+  .step-num.orange { background:var(--orange); }
+  .step-content { flex:1; font-size:13.5px; color:var(--muted); line-height:1.85; }
+  .step-content strong { color:var(--text); font-weight:700; }
+  .step-content .em-r { color:var(--red);   font-weight:700; }
+  .step-content .em-g { color:var(--green); font-weight:700; }
+  .step-content .em   { color:var(--blue);  font-weight:700; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x:auto; margin-top:10px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  table th { background:var(--blue); color:#fff; padding:10px 14px; text-align:left; font-weight:700; }
+  table td { padding:10px 14px; border-bottom:1px solid #e8e8e0; color:var(--muted); }
+  table tr:last-child td { border-bottom:none; }
+  table tr:nth-child(even) td { background:#fafaf6; }
+  table .td-carrier { font-weight:700; color:var(--text); }
+  table .td-days { color:var(--red); font-weight:700; }
+  table .td-now  { color:var(--green); font-weight:700; }
+
+  /* PHONE CARD */
+  .phone-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+  .phone-card { background:#fff; border:1.5px solid var(--amber-bdr); border-radius:12px; padding:14px 16px; }
+  .phone-card .ph-carrier { font-size:12px; font-weight:900; color:var(--amber); margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--amber-bdr); }
+  .phone-card .ph-num { font-size:16px; font-weight:900; color:var(--red); margin:4px 0; }
+  .phone-card .ph-sub { font-size:11.5px; color:var(--muted); line-height:1.7; }
+  .phone-card .ph-tag { display:inline-block; background:var(--green-lt); color:var(--green); font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; border:1px solid var(--green-bdr); margin-bottom:6px; }
+
+  /* CANCEL METHOD */
+  .method-row { display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+  .method-badge { display:inline-flex; align-items:center; gap:4px; font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:999px; border:1.5px solid; flex-shrink:0; }
+  .method-badge.web   { background:var(--blue-lt);  border-color:var(--blue-bdr);  color:var(--blue);  }
+  .method-badge.tel   { background:var(--green-lt); border-color:var(--green-bdr); color:var(--green); }
+  .method-badge.store { background:var(--amber-lt); border-color:var(--amber-bdr); color:var(--amber); }
+
+  /* ORDERED LIST */
+  .ol-list { list-style:none; margin-top:10px; }
+  .ol-list li { display:flex; gap:10px; font-size:13px; color:var(--muted); line-height:1.8; padding:5px 0; border-bottom:1px solid #f0f0ea; }
+  .ol-list li:last-child { border-bottom:none; }
+  .ol-num { width:22px; height:22px; border-radius:50%; background:var(--blue); color:#fff; font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .ol-num.green  { background:var(--green); }
+  .ol-num.red    { background:var(--red); }
+  .ol-num.amber  { background:var(--amber); }
+
+  /* HIGHLIGHT BOX */
+  .hi-box { border-radius:12px; padding:16px 20px; margin-top:12px; border:2px solid; }
+  .hi-box.red    { background:var(--red-lt);    border-color:var(--red);       color:#8b2020; }
+  .hi-box.amber  { background:var(--amber-lt);  border-color:var(--amber-bdr); color:var(--amber); }
+  .hi-box.orange { background:var(--orange-lt); border-color:var(--orange-bdr);color:var(--orange); }
+  .hi-box .hb-title { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .hi-box .hb-body  { font-size:13px; line-height:1.85; }
+
+  /* SIM TARGET */
+  .sim-row { display:flex; flex-direction:column; gap:8px; }
+  .sim-item { display:flex; align-items:center; gap:14px; background:#fff; border:1px solid #e0e0da; border-radius:10px; padding:12px 18px; }
+  .sim-num { width:28px; height:28px; border-radius:50%; font-size:12px; font-weight:900; color:#fff; background:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .sim-name { font-size:14px; font-weight:700; color:var(--text); }
+
+  /* DIVIDER */
+  .divider { height:1px; background:#e0e0da; margin: 28px 0; }
+
+  /* FOOTER */
+  .footer { text-align:center; font-size:11.5px; color:#aaa; margin-top:36px; padding-top:20px; border-top:1px solid #e0e0da; }
+
+  @media(max-width:600px) {
+    .three-grid { grid-template-columns:1fr; }
+    .four-grid  { grid-template-columns:1fr 1fr; }
+    .phone-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">📋 店舗回り 完全マニュアル</div>
+  <div class="hero-title">必須作業・プラン変更<br>解約・定期作業 総まとめ</div>
+  <div class="hero-sub">オプション解約 ／ プラン変更 ／ 回線解約 ／ 定期稼働作業</div>
+</div>
+
+
+<!-- ==================== SECTION 1: 必須作業 ==================== -->
+<div class="sec-head">
+  <div class="sec-icon amber">🔧</div>
+  <div class="sec-title">必須作業について</div>
+</div>
+
+<div class="note amber" style="margin-bottom:14px;">📢 用意するものは<strong>3点</strong>、必ず運営の指示に従って行ってください！</div>
+
+<div class="three-grid">
+  <div class="grid-card">
+    <div class="gc-icon">🔢</div>
+    <div class="gc-title">ネットワーク暗証番号</div>
+    <div class="gc-num">1580</div>
+    <div class="gc-desc">お店で入力した4桁の暗証番号</div>
+  </div>
+  <div class="grid-card">
+    <div class="gc-icon">📱</div>
+    <div class="gc-title">契約した電話番号</div>
+    <div class="gc-desc">キャリア別にそれぞれの電話番号を用意してください</div>
+  </div>
+  <div class="grid-card">
+    <div class="gc-icon">📋</div>
+    <div class="gc-title">加入しているプラン内容</div>
+    <div class="gc-desc">加入時のプランを確認してください</div>
+  </div>
+</div>
+
+<div class="note blue">📞 <strong>電話での対応が最速で簡単です。</strong><br>各カスタマーサポートのオペレーターに直接話して対応してください。</div>
+
+
+<!-- ==================== SECTION 2: プラン変更 ==================== -->
+<div class="sec-head" style="margin-top:36px;">
+  <div class="sec-icon blue">📝</div>
+  <div class="sec-title">プラン変更の流れ</div>
+</div>
+
+<div class="note red" style="margin-bottom:14px;">⚠️ <strong>プラン変更がある場合のみ変更してください。</strong><br>当日いただいたスケジュール表をご確認ください。</div>
+
+<!-- Row 1: docomo/au/YM/SB -->
+<div class="four-grid">
+  <div class="plan-card">
+    <div class="pc-carrier">01. docomo</div>
+    <div class="pc-body">
+      持っている回線すべてを契約した月に<br>
+      <span class="hi">「データミニ 4G」</span><br>
+      設定できる中での最安プランへ変更<br><br>
+      ※ドコモ3回線目を契約する場合は、1回線目「エクシモ」2回線目「データプラン」に変更が必要。その場合はご連絡します。
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">02. au</div>
+    <div class="pc-body">
+      持っている回線すべてを<br>
+      <span class="hi">「スマホミニプラン」</span>（最安プラン）へ変更<br><br>
+      ※「スマホスタートプランライト」が元々入っている場合はそのままでOK<br>
+      ※「スマホスタートプラン5G」の方は<span class="hi">「スマホスタートプランライト」</span>（最安プラン）へ変更
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">03. Y!mobile</div>
+    <div class="pc-body">
+      スマホプランS/M/L間の変更可能<br><br>
+      いずれも契約後すぐに<br>
+      <span class="hi">「Sプラン」</span>へ変更<br><br>
+      ※詳細は検索するとわかりやすい情報あり
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">04. Softbank</div>
+    <div class="pc-body">
+      持っている回線すべてを契約した月に<br>
+      <span class="hi">「ミニフィットプラン」</span>へ変更<br><br>
+      ※スマホデビュープランベーシック（20GB）契約の方は契約した月に<span class="hi">「スマホデビュープランライト(4GB)」</span>へ変更
+    </div>
+  </div>
+</div>
+
+<!-- Row 2: UQ/BIGLOBE/IIJ/光 -->
+<div class="four-grid">
+  <div class="plan-card">
+    <div class="pc-carrier">05. UQ</div>
+    <div class="pc-body">
+      コミコミプランを契約した方は、契約したその月に<br>
+      <span class="hi">「トクトクプラン」</span>へ変更<br><br>
+      <span class="hi-g">即日povo移行の方はどんなプランでもプラン変更不要</span>
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">06. ビックローブ</div>
+    <div class="pc-body">
+      <span class="hi-g">ビックローブは即日回線自体を解約するのでどんなプランでもプラン変更は不要</span>
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">07. IIJ</div>
+    <div class="pc-body">
+      <span class="hi-g">IIJは即日回線自体を解約するのでどんなプランでもプラン変更は不要</span>
+    </div>
+  </div>
+  <div class="plan-card">
+    <div class="pc-carrier">08. 光回線</div>
+    <div class="pc-body">
+      <span class="hi-g">光回線は開通をしないことが多いので、どんなプランでもプラン変更は不要</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 3: キャリア別問い合わせ先 ==================== -->
+<div class="sec-head">
+  <div class="sec-icon green">📞</div>
+  <div class="sec-title">キャリア別 問い合わせ先</div>
+</div>
+
+<div class="note red" style="margin-bottom:14px;">⚠️ <strong>オプション解約やプラン変更を忘れた場合、その費用はご負担いたしませんのでご注意ください。</strong></div>
+
+<div class="phone-grid">
+  <!-- docomo -->
+  <div class="phone-card">
+    <div class="ph-carrier">01. docomo</div>
+    <div class="ph-tag">Web・電話 両方OK</div>
+    <div class="ph-sub">ドコモのSIMを入れた電話から</div>
+    <div class="ph-num">151</div>
+    <div class="ph-sub">ドコモ以外の電話から</div>
+    <div class="ph-num">0120-800-000</div>
+    <div class="ph-sub">受付時間：9:00〜20:00（年中無休）<br>ブラウザからも可能「ドコモカスタマーセンター 電話」と検索</div>
+  </div>
+  <!-- リブモ -->
+  <div class="phone-card">
+    <div class="ph-carrier">02. リブモ (LIBMO)</div>
+    <div class="ph-tag">電話のみ</div>
+    <div class="ph-num">0120-27-1146</div>
+    <div class="ph-sub">受付時間：10:00〜18:00（不定休）</div>
+  </div>
+  <!-- au -->
+  <div class="phone-card">
+    <div class="ph-carrier">03. au</div>
+    <div class="ph-tag">Web・電話 両方OK</div>
+    <div class="ph-sub">auのSIMを入れた電話から</div>
+    <div class="ph-num">157</div>
+    <div class="ph-sub">au以外の電話から</div>
+    <div class="ph-num">0077-7-111</div>
+    <div class="ph-num" style="font-size:14px;">0120-977-033</div>
+    <div class="ph-sub">受付時間：9:00〜20:00（年中無休）<br>ブラウザからも可能「auカスタマーセンター 電話」と検索</div>
+  </div>
+  <!-- UQ -->
+  <div class="phone-card">
+    <div class="ph-carrier">04. UQ</div>
+    <div class="ph-tag">電話のみ</div>
+    <div class="ph-num">0120-929-818</div>
+    <div class="ph-sub">受付時間：9:00〜21:00（年中無休）</div>
+  </div>
+  <!-- YM -->
+  <div class="phone-card">
+    <div class="ph-carrier">05. Y!mobile</div>
+    <div class="ph-tag">Web・電話 両方OK</div>
+    <div class="ph-sub">Y!mobileのSIMを入れた電話から</div>
+    <div class="ph-num">151</div>
+    <div class="ph-sub">ワイモバイル以外の電話から</div>
+    <div class="ph-num">0570-039-151</div>
+    <div class="ph-sub">受付時間：9:00〜20:00（年中無休）</div>
+  </div>
+  <!-- Softbank -->
+  <div class="phone-card">
+    <div class="ph-carrier">06. Softbank</div>
+    <div class="ph-tag">Web・電話 両方OK</div>
+    <div class="ph-sub">Softbankのsimを入れた電話から</div>
+    <div class="ph-num">151</div>
+    <div class="ph-sub">ワイモバイル以外の電話から</div>
+    <div class="ph-num">0800-919-0157</div>
+    <div class="ph-sub">受付時間：9:00〜20:00（年中無休）</div>
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 4: オプション解約 ==================== -->
+<div class="sec-head">
+  <div class="sec-icon red">❌</div>
+  <div class="sec-title">オプション解約について</div>
+</div>
+
+<div class="card">
+  <div class="card-head red">📵 基本の伝え方</div>
+  <div class="card-body">
+    キャリア別のカスタマーサポートに電話して、<br><br>
+    <div style="background:var(--red-lt); border:2px solid var(--red); border-radius:10px; padding:14px 18px; margin:8px 0; font-size:14px; font-weight:700; color:var(--red); text-align:center;">
+      「自分が契約した回線に付いているオプション<br>（アラカルトを含め）を全て解約したい」
+    </div>
+    とお伝えください。<br>
+    ※アラカルトとは Apple Music、YouTubeプレミア等のエンタメオプション
+  </div>
+</div>
+
+<div class="note amber">⚠️ <strong>アラカルト（外部オプション）について</strong><br>
+アラカルトはキャリアが出しているオプションではなく、別会社のサブスクの契約なので電話で一緒に解約できないことが多いです。その場合は<strong>個別に解約方法をネットで調べて</strong>行ってください。</div>
+
+<!-- SB・YM 外部オプション解約 -->
+<div class="sec-head" style="margin-top:24px;">
+  <div class="sec-icon orange">🔧</div>
+  <div class="sec-title">ソフトバンク・ワイモバイル 外部オプション解約方法</div>
+</div>
+
+<div class="card">
+  <div class="card-head orange">📺 DMM（DMMプレミアム）</div>
+  <div class="card-body">
+    WebブラウザでDMMにログイン後、DMMプレミアム会員ページの「プランを解約する」リンクからお手続きください。
+    <ul class="ol-list" style="margin-top:10px;">
+      <li><span class="ol-num">1</span>WebブラウザでDMMにログイン</li>
+      <li><span class="ol-num">2</span>DMMプレミアム会員ページを開く</li>
+      <li><span class="ol-num">3</span>「プランを解約する」のリンクを押下</li>
+      <li><span class="ol-num">4</span>ページの案内に沿って解約手続きを進める</li>
+      <li><span class="ol-num">5</span>最終チェックページで「解約手続きを完了する」を押下</li>
+      <li><span class="ol-num">6</span>DMMプレミアムの解約手続き完了</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head orange">🏠 HELPO</div>
+  <div class="card-body">
+    <strong>操作手順：</strong><br>
+    アプリホーム画面 → 左上の「マイページ」 → その他 → アカウント解約 → 「解約手続きに進む」をタップ
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head orange">📞 テラトーク</div>
+  <div class="card-body">
+    Webでの廃止が難しい場合は電話窓口へ<br>
+    <div class="ph-num" style="font-size:17px; color:var(--red); font-weight:900; margin:8px 0;">050-8882-5939</div>
+    <strong>受付時間：</strong>9:00〜17:30<br><br>
+    各回線テラトークの「注文番号」がある（MYワイモバイルで確認可能）<br>
+    → 電話にて注文番号を伝えれば解約可能
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 5: 定期作業 ==================== -->
+<div class="sec-head">
+  <div class="sec-icon purple">📡</div>
+  <div class="sec-title">定期作業が必要な対象SIM</div>
+</div>
+
+<div class="note blue" style="margin-bottom:14px;">📅 <strong>契約の初月と翌月に1度ずつ、回線ごとに</strong>行ってください。</div>
+
+<div class="sim-row" style="margin-bottom:20px;">
+  <div class="sim-item">
+    <div class="sim-num">1</div>
+    <div class="sim-name">🟡 ワイモバイルのSIM</div>
+  </div>
+  <div class="sim-item">
+    <div class="sim-num">2</div>
+    <div class="sim-name">🔴 ドコモのSIM</div>
+  </div>
+  <div class="sim-item">
+    <div class="sim-num">3</div>
+    <div class="sim-name">⬛ ソフトバンクのSIM</div>
+  </div>
+</div>
+<div class="note amber" style="margin-top:4px;">⚠️ <strong>サブブランド（UQ・povo等）も定期作業あります。</strong>担当からの案内を必ず確認してください。</div>
+
+<!-- 定期作業手順 -->
+<div class="sec-head" style="margin-top:24px;">
+  <div class="sec-icon purple">🔄</div>
+  <div class="sec-title">定期作業手順（9ステップ）</div>
+</div>
+
+<div class="step-list">
+  <div class="step-row">
+    <div class="step-num blue">1</div>
+    <div class="step-content">
+      <strong>SIMを携帯に入れる</strong><br>
+      現在ご自身で使用している携帯、もしくは以前に使っていた携帯で行います。<br>
+      <span class="em-r">⚠️ 元から入っていたSIMと新しいSIMを絶対に混合しないように保管してください。</span>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num red">2</div>
+    <div class="step-content">
+      <strong>Wi-Fiは絶対につながない</strong><br>
+      <span class="em-r">Wi-Fiを繋ぐと稼働したことになりません。必ずWi-FiをOFFにして作業してください。</span>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num blue">3</div>
+    <div class="step-content">
+      <strong>電波が繋がったことを確認する</strong><br>
+      必ず電波が受信されているかを確認してください。<span class="em-g">5Gもしくは4G</span>を確認します。
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num amber">4</div>
+    <div class="step-content">
+      <strong>電話番号「117」（時報）にかけ60秒維持する</strong><br>
+      携帯を使用していることを認識させるためにも、<span class="em-r">時間は必ず維持してください。</span>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num blue">5</div>
+    <div class="step-content"><strong>電話を切る</strong></div>
+  </div>
+  <div class="step-row">
+    <div class="step-num blue">6</div>
+    <div class="step-content">
+      <strong>ブラウザで「100MBファイル サンプル」と検索</strong><br>
+      スマホのブラウザ（Safari・Chrome・Yahoo等）で検索してください。<br>
+      <span class="em-r">注）来店したお店によって指定がある場合はそのやり方に従ってください。</span>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num blue">7</div>
+    <div class="step-content">
+      <strong>100MB画像「大きいサイズ（大容量）」を開きファイルをダウンロード</strong><br>
+      検索結果から「ダウンロード（png）」等のボタンをタップしてダウンロードします。
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num amber">8</div>
+    <div class="step-content">
+      <strong>SIMを抜いて元の状態に戻し、最初に入っていたSIMを入れる</strong><br>
+      <span class="em-r">SIMを紛失しないように保管してください。</span>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num green">9</div>
+    <div class="step-content">
+      <strong>完了 → 公式LINEに終了報告</strong><br>
+      例）「稼働作業　ドコモ3台　UQ2台　Yモバイル5台　完了しました」
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 6: 回線解約の流れ ==================== -->
+<div class="sec-head" style="margin-top:36px;">
+  <div class="sec-icon red">🚫</div>
+  <div class="sec-title">回線解約の流れ</div>
+</div>
+
+<div class="note amber" style="margin-bottom:14px;">📢 用意するものは<strong>3点</strong>、必ず運営の指示に従って行ってください！</div>
+
+<div class="three-grid">
+  <div class="grid-card">
+    <div class="gc-icon">🔢</div>
+    <div class="gc-title">ネットワーク暗証番号</div>
+    <div class="gc-num">1580</div>
+    <div class="gc-desc">お店で入力した4桁の暗証番号</div>
+  </div>
+  <div class="grid-card">
+    <div class="gc-icon">📱</div>
+    <div class="gc-title">契約した電話番号</div>
+    <div class="gc-desc">キャリア別にそれぞれの電話番号を用意してください</div>
+  </div>
+  <div class="grid-card">
+    <div class="gc-icon">🪪</div>
+    <div class="gc-title">本人確認できる身分証明書</div>
+    <div class="gc-desc">Web・電話解約の場合は不要</div>
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 7: 解約日計算 ==================== -->
+<div class="sec-head">
+  <div class="sec-icon blue">📅</div>
+  <div class="sec-title">解約日の計算方法</div>
+</div>
+
+<div class="note blue" style="margin-bottom:12px;">💡 <strong>例）</strong>契約日 5/10 から3ヶ月後の日付〜当月末の場合 → <strong>8/10〜8/31 の間に解約</strong></div>
+
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>キャリア</th><th>解約できる時期</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="td-carrier">docomo</td><td class="td-days">契約日から90日の日〜当月末まで</td></tr>
+      <tr><td class="td-carrier">Y!mobile / Softbank</td><td class="td-days">契約日から90日の日〜当月末まで</td></tr>
+      <tr><td class="td-carrier">UQ mobile</td><td class="td-days">契約日から90日の日〜当月末まで</td></tr>
+      <tr><td class="td-carrier">au</td><td class="td-days">契約日から180日の日〜当月末まで</td></tr>
+      <tr><td class="td-carrier">LIBMO</td><td class="td-now">契約した当月中に解約</td></tr>
+      <tr><td class="td-carrier">BIGLOBE</td><td class="td-now">契約した当月中に解約</td></tr>
+      <tr><td class="td-carrier">IIJ</td><td class="td-now">契約した当月中に解約</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="hi-box red" style="margin-top:14px;">
+  <div class="hb-title">⚠️ 重要な注意事項</div>
+  <div class="hb-body">
+    解約をご案内した期間を過ぎてからかかってしまった「オプション費用・通信費」などは<strong>自費</strong>となってしまうので忘れずに作業してください。<br><br>
+    解約時期にこちらからのご連絡は基本的に行わないため、<strong>ご自身でカレンダーに記入し管理</strong>をお願いします。
+  </div>
+</div>
+
+<!-- キャリア別解約先 -->
+<div class="sec-head" style="margin-top:24px;">
+  <div class="sec-icon red">📞</div>
+  <div class="sec-title">キャリア別 解約先まとめ</div>
+</div>
+
+<div class="card">
+  <div class="card-head blue">docomo ／ au ／ Y!mobile</div>
+  <div class="card-body">
+    <div class="method-row"><span class="method-badge web">🌐 Web</span><span class="method-badge store">🏪 店舗</span></div>
+    ※店舗で解約の場合、<strong>事前にWebでショップの予約</strong>を入れてからご来店ください。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head amber">LIBMO</div>
+  <div class="card-body">
+    <div class="method-row"><span class="method-badge web">🌐 Web</span><span class="method-badge tel">📞 電話</span></div>
+    <strong>サポートセンター：</strong><div class="ph-num" style="font-size:16px; color:var(--red); font-weight:900;">0120-27-1146</div>
+    受付時間：10:00〜18:00<br>
+    ガイダンス「＊」→「8」→「2」を入力<br>
+    ※SIM返却を求められますが、返却しなくても問題はないです
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head amber">BIGLOBE ／ IIJ</div>
+  <div class="card-body">
+    <div class="method-row"><span class="method-badge tel">📞 電話のみ</span></div>
+    <strong>BIGLOBE：</strong><div class="ph-num" style="font-size:16px; color:var(--red); font-weight:900;">0120-86-0962</div>
+    受付時間：9:00〜18:00<br><br>
+    <strong>IIJ：</strong><div class="ph-num" style="font-size:16px; color:var(--red); font-weight:900;">0570-09-440</div>
+    受付時間：9:00〜19:00
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head amber">UQ</div>
+  <div class="card-body">
+    <div class="method-row"><span class="method-badge web">🌐 Web</span><span class="method-badge store">🏪 店舗</span></div>
+    <div class="note red" style="margin-bottom:10px;">❌ <strong>2024年9月以降、電話での解約は不可</strong>です。オンラインまたは店舗での手続きとなります。</div>
+    「UQカスタマーセンター」と検索<br>
+    <div class="ph-num" style="font-size:16px; color:var(--red); font-weight:900;">0120-001-659</div>
+    受付時間：9:00〜20:00<br><br>
+    ※店舗で解約の場合、<strong>事前にWebでショップの予約</strong>を入れてからご来店ください。
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 8: 各キャリア解約方法 ==================== -->
+<div class="sec-head" style="margin-top:36px;">
+  <div class="sec-icon blue">📱</div>
+  <div class="sec-title">各キャリア 詳細解約方法</div>
+</div>
+
+<!-- docomo -->
+<div class="card">
+  <div class="card-head blue">🔴 ドコモの解約方法</div>
+  <div class="card-body">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div>
+        <strong>【他社に乗り換えて解約する】</strong><br>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>「My docomo」にログイン</li>
+          <li><span class="ol-num">2</span>「住所・契約内容の変更手続きをしたい」をタップ</li>
+          <li><span class="ol-num">3</span>「携帯電話番号ポータビリティ予約(MNP)」を選択</li>
+          <li><span class="ol-num">4</span>発番されたMNP予約番号を控える</li>
+          <li><span class="ol-num">5</span>乗り換え先キャリアで契約手続きを行う</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【オンラインで解約する】</strong><br>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>マイドコモにログイン</li>
+          <li><span class="ol-num">2</span>検索窓に「回線の解約」と入力</li>
+          <li><span class="ol-num">3</span>「回線の解約」を選択し「お手続きをする」をタップ</li>
+          <li><span class="ol-num">4</span>Dアカウントのパスワードを入力</li>
+          <li><span class="ol-num">5</span>「お手続きにあたっての注意事項」を確認</li>
+          <li><span class="ol-num">6</span>「同意した上で解約のお手続きへ進む」をタップ</li>
+          <li><span class="ol-num">7</span>2段階認証をクリア</li>
+          <li><span class="ol-num">8</span>契約住所を確認し進める</li>
+          <li><span class="ol-num">9</span>「機種分割御支払金の残金」「解約金」を確認し進む</li>
+          <li><span class="ol-num">10</span>解約後も継続利用するオプションを選択</li>
+          <li><span class="ol-num">11</span>注意事項を確認し「解約の注意事項に同意する」にチェック</li>
+          <li><span class="ol-num">12</span>解約通知を受信するメールアドレスを選択・入力</li>
+          <li><span class="ol-num">13</span>内容確認へ進み最終確認</li>
+          <li><span class="ol-num">14</span>「この内容で手続きを完了する」を選択</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note red" style="margin-top:12px;">❌ <strong>以下の回線はドコモショップのみの手続きが必要です</strong><br>・シェアグループの代表回線<br>・ドコモ光とペアになっている回線<br>自分がどちらかわからない方はドコモショップでの解約を推奨</div>
+  </div>
+</div>
+
+<!-- UQ -->
+<div class="card">
+  <div class="card-head green">🟢 UQの解約方法</div>
+  <div class="card-body">
+    <div class="note amber" style="margin-bottom:12px;">⚠️ <strong>2024年9月以降、電話での解約はできません。</strong>オンラインまたは店舗での手続きとなります。</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div>
+        <strong>【オンラインで解約する手順】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num green">1</span>My UQ mobileにログイン</li>
+          <li><span class="ol-num green">2</span>「契約確認・変更」を選択</li>
+          <li><span class="ol-num green">3</span>「ご契約中の料金プラン」内の「詳細を確認・変更する」を選択</li>
+          <li><span class="ol-num green">4</span>最下部にある「解約」を選択</li>
+          <li><span class="ol-num green">5</span>画面の指示に従う</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【店舗での解約手続き】</strong><br>
+        <div class="note blue" style="margin-top:8px;">
+          ・契約者の本人確認書類と電話番号を用意<br>
+          ・UQモバイルのお店で手続きを行う
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- YM -->
+<div class="card">
+  <div class="card-head amber">🟡 ワイモバイルの解約方法</div>
+  <div class="card-body">
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+      <div>
+        <strong>【オンライン】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num amber">1</span>ワイモバイル公式サイトにアクセス</li>
+          <li><span class="ol-num amber">2</span>「MNP転出・解約をご検討中のお客さまへ」にアクセス</li>
+          <li><span class="ol-num amber">3</span>「解約」を選択</li>
+          <li><span class="ol-num amber">4</span>利用規約に同意</li>
+          <li><span class="ol-num amber">5</span>解約する電話番号を確認</li>
+          <li><span class="ol-num amber">6</span>解約にかかる費用を確認</li>
+          <li><span class="ol-num amber">7</span>注意事項を確認</li>
+          <li><span class="ol-num amber">8</span>アンケートに回答</li>
+          <li><span class="ol-num amber">9</span>申込内容を確認</li>
+          <li><span class="ol-num amber">10</span>解約手続き完了</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【電話】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num red">1</span>ワイモバイルの携帯から「116」にダイヤル</li>
+          <li><span class="ol-num red">2</span>その他の電話から「0120-921-156」にダイヤル</li>
+          <li><span class="ol-num red">3</span>受付時間（9:00〜20:00）にオペレーターに電話</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【店舗】</strong>
+        <div class="note blue" style="margin-top:8px;">
+          ・契約者の本人確認書類と電話番号を用意<br>
+          ・ワイモバイルのお店で手続きを行う
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SB -->
+<div class="card">
+  <div class="card-head orange">⬛ ソフトバンクの解約方法</div>
+  <div class="card-body">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div>
+        <strong>【電話での解約】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>ソフトバンク携帯から：<strong>＊5533</strong>（年中無休 9:00〜20:00）</li>
+          <li><span class="ol-num">2</span>一般電話から：<strong>0800-100-5533</strong>（年中無休 9:00〜20:00）</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【My SoftBankでの解約手順】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>My SoftBankにログイン</li>
+          <li><span class="ol-num">2</span>「解約のお手続き」を選択</li>
+          <li><span class="ol-num">3</span>「（MNPをともなわない）解約手続き方法」を選択</li>
+          <li><span class="ol-num">4</span>「My SoftBankでお手続き」を選択</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note blue" style="margin-top:8px;"><strong>【店舗での解約手続き】</strong> 契約者の本人確認書類と電話番号を用意して、ソフトバンクのお店で手続きを行う</div>
+  </div>
+</div>
+
+<!-- BIGLOBE -->
+<div class="card">
+  <div class="card-head blue">🔵 BIGLOBEの解約方法</div>
+  <div class="card-body">
+    <div class="hi-box red" style="margin-bottom:12px;">
+      <div class="hb-title">🚨 解約月の25日までに解約！！！</div>
+      <div class="hb-body">
+        25日を過ぎると翌月解約の扱いとなり、もう1ヶ月分余計に料金を支払うことになります。<br>
+        ・料金の日割り計算はなし<br>
+        ・解約月の料金は全額支払い
+      </div>
+    </div>
+    <div class="note red">⚠️ <strong>BIGLOBEベーシックコースの解約も絶対！！！</strong><br>BIGLOBEモバイルのSIMだけ解約しても、BIGLOBEの「接続ベーシックコース」（月額220円）は残ったままになり料金が発生し続けます。必ず一緒に解約してください。<br><br>
+    <strong>BIGLOBEカスタマーサポート：</strong><br>
+    0120-85-0962（通話無料）／ 03-6385-0962（通話料有料）<br>
+    受付時間：9:00〜18:00 365日受付</div>
+  </div>
+</div>
+
+<!-- IIJ -->
+<div class="card">
+  <div class="card-head blue">🔷 IIJの解約方法</div>
+  <div class="card-body">
+    <div class="note amber" style="margin-bottom:12px;">⚠️ 乗り換え元のSIMとして作成したが、乗り換えが当日できずに余った場合は担当に確認してすぐ解約してください。</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div>
+        <strong>【会員専用ページでの手続き】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>IIJmioの会員専用ページにログイン</li>
+          <li><span class="ol-num">2</span>「ご契約者情報の変更・照会」を選択</li>
+          <li><span class="ol-num">3</span>「SIMカードの削除」をタップ</li>
+          <li><span class="ol-num">4</span>解約するプランを選択</li>
+          <li><span class="ol-num">5</span>「次へ」をタップ</li>
+          <li><span class="ol-num">6</span>解約日や注意事項を確認して手続き完了</li>
+        </ul>
+      </div>
+      <div>
+        <strong>【IIJサポートセンターへの連絡】</strong>
+        <ul class="ol-list" style="margin-top:8px;">
+          <li><span class="ol-num">1</span>IIJサポートセンター（0570-09-4400）に連絡</li>
+          <li><span class="ol-num">2</span>書面が送付されるので、指定の送付先へ返送</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- auraモバイル -->
+<div class="card">
+  <div class="card-head green">🟩 auraモバイルの解約方法</div>
+  <div class="card-body">
+    <div class="note amber" style="margin-bottom:12px;">⚠️ 乗り換えが当日できずに余った場合は担当に確認してすぐ解約してください。</div>
+    <ul class="ol-list">
+      <li><span class="ol-num green">1</span>auraモバイルの公式LINEで「解約したい旨」を伝える</li>
+      <li><span class="ol-num green">2</span>解約したい電話番号と回線名義を伝える</li>
+      <li><span class="ol-num green">3</span>「解約」の案内に従い完了</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 楽天 -->
+<div class="card">
+  <div class="card-head red">🔴 楽天モバイルの解約方法</div>
+  <div class="card-body">
+    <div class="note amber" style="margin-bottom:12px;">⚠️ 乗り換えが当日できずに余った場合は担当に確認してすぐ解約してください。</div>
+    <strong>【Web版「my 楽天モバイル」で解約する手順】</strong>
+    <ul class="ol-list" style="margin-top:8px;">
+      <li><span class="ol-num red">1</span>「my 楽天モバイル」にログイン</li>
+      <li><span class="ol-num red">2</span>メニュー一覧から「契約プラン」を選択</li>
+      <li><span class="ol-num red">3</span>「各種手続き＞各種手続きへ進む」をタップ</li>
+      <li><span class="ol-num red">4</span>「解約のお手続き」内の「解約」を選択</li>
+      <li><span class="ol-num red">5</span>解約に関する注意事項を確認し、次へ進む</li>
+      <li><span class="ol-num red">6</span>アンケートに回答し「解約内容を確認する」をタップ</li>
+      <li><span class="ol-num red">7</span>ワンタイムパスワードを入力し「認証する」をタップ</li>
+      <li><span class="ol-num red">8</span>お申し込み内容を確認し「解約を完了する」をタップ</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ==================== SECTION 9: UQ→povo ==================== -->
+<div class="sec-head">
+  <div class="sec-icon purple">🔄</div>
+  <div class="sec-title">UQ（AU）からpovoへ移行する方法</div>
+</div>
+
+<div class="note blue" style="margin-bottom:14px;">📌 UQからpovoへの移行は<strong>UQは解約扱い</strong>となります。メアドは「捨てメアド」アプリで数秒で大量作成できるので推奨。</div>
+
+<div class="card">
+  <div class="card-head purple">📋 移行手順</div>
+  <div class="card-body">
+    <ul class="ol-list">
+      <li><span class="ol-num purple" style="background:var(--purple);">1</span>povoのHPにアクセスし「通話＋データ」のお申し込みをタップ</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">2</span>「au/UQ mobile/povo1.0から変更」を選択</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">3</span>au回線の確認：povo2.0に切り替えるau/UQ mobile/povo1.0の回線を選択</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">4</span>SIMタイプ：SIMカードまたはeSIMを選択</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">5</span>アカウント登録：メールアドレスを入力（au/UQのキャリアメールは使用不可）</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">6</span>上記内容を確認し「同意します」にチェック</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">7</span>重要事項を確認し同意（ポップアップが開く）</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">8</span>「この内容で申し込む」をタップ</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">9</span>お支払い方法を設定（クレジットカードまたはクレジットカード以外）</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">10</span>「povo2.0への切り替え/eSIMを発行する」をタップ</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">11</span>お申し込み内容の確認</li>
+      <li><span class="ol-num purple" style="background:var(--purple);">12</span>SIMの有効化を受け付けました → 完了メールが届く</li>
+    </ul>
+    <div class="note amber">⚠️ 20時以降にSIMの有効化を行った場合、翌9時30分以降順次有効になります。</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">店舗回り 完全マニュアル ／ 公式LINEに不明点はお気軽にご連絡ください</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
